@@ -1,6 +1,5 @@
 import Snake from "/src/snake.js";
 import Food from "./food.js";
-//import InputHandler from "/src/input";
 
 export default class Game {
     constructor(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE, snake, food) {
@@ -12,8 +11,6 @@ export default class Game {
     }
 
     eat() {
-        //var a = this.snake.x - this.food.x;
-        //var b = this.snake.y - this.food.y;
         var a = this.snake.tail[0][0] - this.food.x;
         var b = this.snake.tail[0][1] - this.food.y;
         var dist = Math.sqrt( a*a + b*b );

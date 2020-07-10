@@ -7,6 +7,7 @@ import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   GRID_SIZE,
+  pride_colors
 } from "./constants.js";
 
 var canvas = document.getElementById("gameScreen");
@@ -19,7 +20,8 @@ function animate(gameLoop) {
     }, 1000 / fps);
 }
 
-var s = new Snake(GRID_SIZE);
+
+var s = new Snake(GRID_SIZE, pride_colors);
 var f = new Food(GRID_SIZE);
 var inputHandler = new InputHandler(s);
 var game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE, s, f);

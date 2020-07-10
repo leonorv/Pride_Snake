@@ -8,6 +8,7 @@ export default class Food {
     }
 
     draw(context) {
+        context.fillSyle = "#000000";
         context.fillRect(this.x, this.y, this.gridSize, this.gridSize);
         context.rect(this.x, this.y, this.gridSize, this.gridSize);
     }
