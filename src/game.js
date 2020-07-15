@@ -24,6 +24,7 @@ export default class Game {
     }
 
     update(deltatime) {
+        if (this.snake.die()) console.log("die");
         this.snake.update(deltatime);
         if (this.eat()) {
             this.food = new Food(this.gridSize);
