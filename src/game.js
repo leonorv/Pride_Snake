@@ -8,13 +8,14 @@ export default class Game {
         this.gridSize = GRID_SIZE;
         this.snake = snake;
         this.food = food;
+        this.score = 0;
     }
 
     eat() {
         var a = this.snake.tail[0][0] - this.food.x;
         var b = this.snake.tail[0][1] - this.food.y;
         var dist = Math.sqrt( a*a + b*b );
-        return (dist < 2);
+        return (dist < 1);
     }
 
     draw(context) {
@@ -24,12 +25,21 @@ export default class Game {
     }
 
     update(deltatime) {
-        if (this.snake.die()) console.log("die");
+        if (this.snake.die()) {
+            this.end();
+        }
         this.snake.update(deltatime);
         if (this.eat()) {
             this.food = new Food(this.gridSize);
             this.snake.grow();
+            this.score++;
+            document.getElementById("score").innerHTML = this.score;
         }
+    }
+
+    end() {
+        this.score = 0;
+        document.getElementById("score").innerHTML = this.score;
     }
 
 }

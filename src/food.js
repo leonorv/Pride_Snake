@@ -1,3 +1,5 @@
+
+
 export default class Food {
     constructor(GRID_SIZE) {
 
@@ -5,12 +7,13 @@ export default class Food {
 
         this.x = Math.floor((Math.random() * 30) + 1)*20;
         this.y = Math.floor((Math.random() * 20) + 1)*20;
+
+        this.image = new Image(20,20);
+        this.image.src = '/src/apple.png';
     }
 
     draw(context) {
-        context.fillSyle = "#000000";
-        context.fillRect(this.x, this.y, this.gridSize, this.gridSize);
-        context.rect(this.x, this.y, this.gridSize, this.gridSize);
+        context.drawImage(this.image, this.x, this.y, 20, 20);
     }
 
 }
