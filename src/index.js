@@ -12,6 +12,8 @@ import {
 
 var canvas = document.getElementById("gameScreen");
 var context = canvas.getContext("2d");
+var startBtn = document.getElementById("startBtn");
+startBtn.onclick = init;
 
 var fps = 20;
 function animate(gameLoop) {
@@ -20,23 +22,36 @@ function animate(gameLoop) {
     }, 1000 / fps);
 }
 
+function init() {
+  startBtn.style.display = "none";
 
-var s = new Snake(GRID_SIZE, pride_colors);
-var f = new Food(GRID_SIZE);
-var inputHandler = new InputHandler(s);
-var game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE, s, f);
 
-var lastTime = 0;
-function gameLoop(timestamp) {
-  var deltaTime = timestamp - lastTime;
-  lastTime = timestamp;
-  context.clearRect(0, 0, 600, 400);
+  var s = new Snake(GRID_SIZE, pride_colors);
+  var f = new Food(GRID_SIZE);
+  var inputHandler = new InputHandler(s);
+  var game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE, s, f);
 
-  game.update(deltaTime);
-  game.draw(context);
+  var lastTime = 0;
+  function gameLoop(timestamp) {
+    var deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
+    context.clearRect(0, 0, 600, 400);
 
-  
+    game.update(deltaTime);
+    game.draw(context);
+    if (game.over == "true") {
+      setTimeout(gameOver, 300);
+      return;
+    }
+
+    
+    animate(gameLoop);
+
+  }
   animate(gameLoop);
-
 }
-animate(gameLoop);
+
+function gameOver() {
+  context.clearRect(0,0,600,400);
+  startBtn.style.display = "inline";
+}

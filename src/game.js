@@ -9,6 +9,7 @@ export default class Game {
         this.snake = snake;
         this.food = food;
         this.score = 0;
+        this.over = "false";
     }
 
     eat() {
@@ -40,6 +41,7 @@ export default class Game {
     end() {
         this.score = 0;
         document.getElementById("score").innerHTML = this.score;
+        this.over = "true";
     }
 
 }
